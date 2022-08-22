@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {COLOR} from '@/utils/color';
 
 export default function AppText(props) {
   if (!props.children && !props.content) {
@@ -20,6 +21,6 @@ export default function AppText(props) {
 const styles = StyleSheet.create({
   text: {
     fontSize: 14,
-    color: 'black',
+    color: COLOR.BLACK,
   },
 });

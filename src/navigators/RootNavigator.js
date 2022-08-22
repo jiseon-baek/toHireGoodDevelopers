@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SafeAreaView, useColorScheme} from 'react-native';
-import Home from '../screens/Home';
+import Home from '../screens/Home/Home';
 import {SCREEN} from './routes';
 
 const RootStack = createStackNavigator();
@@ -20,7 +20,6 @@ export default function RootNavigator() {
   const refNavigation = useRef(null);
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer ref={refNavigation}>
         <RootStack.Navigator screenOptions={screenOptions}>
           <RootStack.Screen name={SCREEN.HOME} component={Home} />

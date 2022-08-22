@@ -10,14 +10,9 @@ import React from 'react';
 import type {Node} from 'react';
 import {SafeAreaView, useColorScheme} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootNavigator from './src/navigators/RootNavigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,9 +22,9 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaProvider style={backgroundStyle}>
       <RootNavigator />
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
