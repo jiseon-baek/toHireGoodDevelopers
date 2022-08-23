@@ -1,5 +1,7 @@
-export const getPublicRepo = async () => {
-  let response = await fetch('https://api.github.com/repositories');
-  let json = await response.json();
-  return json;
+import {API} from './api';
+
+export const getPublicRepo = (inputText, lang) => {
+  const url = `search/repositories?q=${inputText}+language:${lang}&sort=stars&order=desc`;
+
+  return API.get(url);
 };
