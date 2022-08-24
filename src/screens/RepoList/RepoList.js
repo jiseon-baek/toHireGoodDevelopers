@@ -34,7 +34,7 @@ const RepoList = () => {
     <SafeAreaView style={styles.container}>
       <Header array={array} />
       <View style={styles.titleView}>
-        <Text style={styles.title}>🔎 Github Repository 검색</Text>
+        <Text style={styles.title}>등록된 Repositories</Text>
       </View>
       <ScrollView></ScrollView>
     </SafeAreaView>
