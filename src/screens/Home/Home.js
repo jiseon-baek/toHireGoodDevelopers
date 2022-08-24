@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,38 +7,56 @@ import {
   TextInput,
   ActivityIndicator,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import AppText from '@/components/AppText';
+import Header from '@/components/Header';
 import styles from './styles';
-import {useState} from 'react';
 import {getPublicRepo} from '../../services/RepositoryService';
 import {useEffect} from 'react';
 import {COLOR} from '../../utils/color';
 import Repository from './Repository';
+import {saveStorageData, loadStorageData} from '../../utils/storage';
 
 const Home = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [dataNum, setDataNum] = useState(0);
   const [data, setData] = useState([]);
+  const [array, setArray] = useState(0);
+
+  useEffect(() => {
+    loadStorageData('repos')
+      .then(data => {
+        return setArray(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [array]);
 
   const searchRepo = async () => {
-    try {
-      setLoading(true);
-      const res = await getPublicRepo(input);
-      if (res.data) {
-        setData(res.data?.items);
-        setDataNum(res.data?.total_count);
+    if (input === '') {
+      Alert.alert('검색어를 입력하세요.');
+    } else {
+      try {
+        setLoading(true);
+        const res = await getPublicRepo(input);
+
+        if (res.data) {
+          setData(res.data?.items);
+          setDataNum(res.data?.total_count);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header array={array} canBack={false} />
       <View style={styles.titleView}>
         <Text style={styles.title}>🔎 Github Repository 검색</Text>
       </View>
@@ -70,7 +88,12 @@ const Home = () => {
         ) : (
           data?.map(item => (
             <View key={item?.id} style={styles.item}>
-              <Repository item={item} />
+              <Repository
+                item={item}
+                name={item.name}
+                url={item.html_url}
+                array={array}
+              />
             </View>
           ))
         )}

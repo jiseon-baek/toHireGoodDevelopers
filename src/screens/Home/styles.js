@@ -49,10 +49,21 @@ const styles = StyleSheet.create({
   item: {
     marginTop: 10,
   },
+  repoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+  },
   repoItem: {
+    width: '70%',
     paddingVertical: 10,
     paddingHorizontal: 10,
     backgroundColor: COLOR.GRAY,
+  },
+  registerBtn: {
+    widht: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

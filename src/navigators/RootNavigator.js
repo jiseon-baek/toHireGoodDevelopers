@@ -6,6 +6,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SafeAreaView, useColorScheme} from 'react-native';
 import Home from '../screens/Home/Home';
 import {SCREEN} from './routes';
+import RepoList from '../screens/RepoList/RepoList';
 
 const RootStack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export default function RootNavigator() {
       <NavigationContainer ref={refNavigation}>
         <RootStack.Navigator screenOptions={screenOptions}>
           <RootStack.Screen name={SCREEN.HOME} component={Home} />
+          <RootStack.Screen name={SCREEN.REPO_LIST} component={RepoList} />
         </RootStack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

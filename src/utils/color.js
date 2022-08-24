@@ -4,6 +4,7 @@ const COLOR = {
   MAIN_COLOR: '#2B7359',
   POINT_COLOR: '#0A84FF',
   GRAY: '#FAFAFA',
+  RED: '#d2434d',
 };
 
 export {COLOR};

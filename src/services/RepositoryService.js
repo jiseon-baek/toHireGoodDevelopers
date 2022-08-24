@@ -5,3 +5,7 @@ export const getPublicRepo = (inputText, lang) => {
 
   return API.get(url);
 };
+
+export const deleteRepo = data => {
+  const url = ``;
+};
